@@ -1,8 +1,8 @@
 package com.goldedrose;
 
-public class Sulfuras extends Item {
+import static com.goldedrose.ItemType.SULFURAS;
 
-    private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+public class Sulfuras extends Item {
 
     public Sulfuras(int sellIn, int quality) {
         super(SULFURAS, sellIn, quality);

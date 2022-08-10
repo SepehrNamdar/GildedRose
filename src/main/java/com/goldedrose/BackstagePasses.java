@@ -1,8 +1,8 @@
 package com.goldedrose;
 
-public class BackstagePasses extends Item {
+import static com.goldedrose.ItemType.BACKSTAGE_PASSES;
 
-    private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+public class BackstagePasses extends Item {
 
     public BackstagePasses(int sellIn, int quality) {
         super(BACKSTAGE_PASSES, sellIn, quality);
@@ -11,23 +11,25 @@ public class BackstagePasses extends Item {
     @Override
     public void doUpdateQuality() {
         if (quality < 50) {
-            quality = quality + 1;
+            quality++;
 
             if (sellIn < 11) {
-                if (quality < 50) {
-                    quality = quality + 1;
-                }
+                increaseQuality();
             }
 
             if (sellIn < 6) {
-                if (quality < 50) {
-                    quality = quality + 1;
-                }
+                increaseQuality();
             }
         }
-        sellIn = sellIn - 1;
+        sellIn--;
         if (sellIn < 0) {
             quality = 0;
+        }
+    }
+
+    private void increaseQuality() {
+        if (quality < 50) {
+            quality++;
         }
     }
 }

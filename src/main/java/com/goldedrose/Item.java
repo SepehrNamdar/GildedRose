@@ -1,10 +1,8 @@
 package com.goldedrose;
 
-public class Item {
+import static com.goldedrose.ItemType.*;
 
-    private static final String AGED_BRIE = "Aged Brie";
-    private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
-    private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+public class Item {
 
     public String name;
     public int sellIn;
@@ -35,14 +33,16 @@ public class Item {
     }
 
     public void doUpdateQuality() {
-        if (quality > 0) {
-            quality = quality - 1;
+        decreaseQuality();
+        sellIn--;
+        if (sellIn < 0) {
+            decreaseQuality();
         }
-        sellIn = sellIn - 1;
+    }
+
+    private void decreaseQuality() {
         if (quality > 0) {
-            if (sellIn < 0) {
-                quality = quality - 1;
-            }
+            quality--;
         }
     }
 }
